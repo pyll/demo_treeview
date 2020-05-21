@@ -15,6 +15,9 @@ public:
 	inline void setName(const QString& name) { _name = name; }
 	inline const QString& name() const { return _name; }
 
+	inline void setChecked(bool checked) { _checked = checked; }
+	inline bool checked() const { return _checked; }
+
 	inline MyTreeItem* child(int row) { return row < 0 || row >= childCount() ? nullptr : _child_list[row]; }
 	inline const MyTreeItem* child(int row) const { return row < 0 || row >= childCount() ? nullptr : _child_list[row]; }
 
@@ -31,6 +34,9 @@ private:
 
 	///item display name
 	QString _name;
+
+	///checked
+	bool _checked = true;
 
 	///item's parent
 	MyTreeItem* _parent = nullptr;

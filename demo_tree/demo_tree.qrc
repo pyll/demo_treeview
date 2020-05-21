@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="demo_tree">
-    </qresource>
+  <qresource prefix="demo_tree">
+    <file>Resources/button_add.png</file>
+  </qresource>
 </RCC>

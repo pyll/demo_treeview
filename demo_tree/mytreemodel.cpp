@@ -6,7 +6,7 @@ MyTreeModel::MyTreeModel(QObject* parent /*= Q_NULLPTR*/) : QAbstractItemModel(p
 	, _root_item(new MyTreeItem("root"))
 {
 	///make some item
-	MyTreeItem* first_item = new MyTreeItem("first");
+	MyTreeItem* first_item = new MyTreeItem("firsteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
 	first_item->appendChild(new MyTreeItem("f_1"));
 	first_item->appendChild(new MyTreeItem("f_2"));
 	first_item->appendChild(new MyTreeItem("f_3"));
@@ -65,7 +65,46 @@ Q_INVOKABLE QVariant MyTreeModel::data(const QModelIndex &index, int role /*= Qt
 		return item->name();
 	}
 	case Qt::DecorationRole:
-		return QIcon("D:/logo.png");
+	{
+		//return QIcon("D:/logo.png");
+		return QIcon(":/demo_tree/Resources/button_add.png");
+	}
+	case Qt::CheckStateRole:
+	{
+		MyTreeItem* item = static_cast<MyTreeItem*>(index.internalPointer());
+		return item->checked() ? Qt::Checked : Qt::Unchecked;
+	}
 	}
 	return QVariant();
+}
+
+Q_INVOKABLE Qt::ItemFlags MyTreeModel::flags(const QModelIndex &index) const
+{
+	if (!index.isValid()) return Qt::ItemIsEnabled;
+
+	return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEditable;
+}
+
+Q_INVOKABLE bool MyTreeModel::setData(const QModelIndex &index, const QVariant &value, int role /*= Qt::EditRole*/)
+{
+	if (!index.isValid()) return false;
+
+	switch (role)
+	{
+	case Qt::CheckStateRole:
+	{
+		MyTreeItem* item = static_cast<MyTreeItem*>(index.internalPointer());
+		item->setChecked(value.toBool());
+		break;
+	}
+	case Qt::EditRole:
+	{
+		MyTreeItem* item = static_cast<MyTreeItem*>(index.internalPointer());
+		item->setName(value.toString());
+		break;
+	}
+	}
+
+	emit dataChanged(index, index);
+	return true;
 }

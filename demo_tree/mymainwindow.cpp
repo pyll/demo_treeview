@@ -3,12 +3,13 @@
 #include "mytreeview.h"
 
 ///mainwindow's width and height
-const int k_main_window_minimum_width_and_height = 400;
+const int k_main_window_minimum_width = 1;
+const int k_main_window_minimum_height = 400;
 
 MyMainWindow::MyMainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
-	setMinimumSize(k_main_window_minimum_width_and_height, k_main_window_minimum_width_and_height);
+	setMinimumSize(k_main_window_minimum_width, k_main_window_minimum_height);
 
 	///create a tree in mainwindow left dockwidget
 	QDockWidget* left_dock_widget = new QDockWidget(this);

@@ -9,6 +9,7 @@ class MyTreeView : public QTreeView
 public:
 	MyTreeView(QWidget* parent = Q_NULLPTR);
 	~MyTreeView() {}
+
 };
 
 #endif

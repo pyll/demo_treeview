@@ -4,6 +4,8 @@
 
 #include <QtWidgets/QStyledItemDelegate>
 
+class QPushButton;
+
 class MyItemDelegate : public QStyledItemDelegate
 {
 public:
@@ -14,7 +16,9 @@ public:
 
 
 	virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-
+private:
+	QPushButton*  _push_button;
+	int _button_width = 100;
 };
 
 #endif
